@@ -72,7 +72,7 @@ a {
 document.write('<select onchange="set_pokes()" size="1" id="type">');
 for (i = -1; i < typename.length; i++){
 	if (i<0){
-		document.write('<option selected="selected" value ="'+i+'">I don\'t know what my Friend Safari type is!</option>');
+		document.write('<option selected="selected" value ="'+i+'">I don\'t know what\'s in my safari.</option>');
 	}
 	else{
 		document.write('<option value ="'+i+'">'+typename[i].slice(0,1).toUpperCase()+typename[i].slice(1)+'</option>');
@@ -84,7 +84,7 @@ document.write('</select>')
 <div id="slot1"></div>
 <div id="slot2"></div>
 <div id="slot3"></div>
-<div id="button" onclick="safari_send()">SEND</div>
+<div id="button" onclick="safari_send()">GENERATE FLAIR REQUEST</div>
 <p>
 <!--<div id="button" onclick="unknown_send()">I don't know what pokemon I have!</div>-->
 </form>
@@ -136,6 +136,11 @@ function safari_send(){
 	poke3 = document.getElementById("poke3");
 	poke3 = poke3.options[poke3.selectedIndex].value;
 
+	if (poke1==="none" || poke2==="none") {
+		alert("When entering a type, you must enter the first two Pokemon in your safari as well.\n\nIf you do not the first two Pokemon in your safari, please select \"I don't know what's in my safari.\" instead.");
+		return;
+	}
+	
 	poke1 = pokecheck[type][0].split(" ")[poke1];
 	poke2 = pokecheck[type][1].split(" ")[poke2];
 	
@@ -167,9 +172,9 @@ function set_pokes(){
 	
 	oSlot1  = '<select size="1" id="poke1">';
 	pokes = pokecheck[type][0].split(" ");
-	for (i = 0; i < pokes.length-1; i++){
-		if (i==0){
-			oSlot1 +=('<option selected="selected" value ="'+i+'">'+pokes[i].slice(0,1).toUpperCase()+pokes[i].slice(1)+'</option>');
+	for (i = -1; i < pokes.length-1; i++){
+		if (i==-1){
+			oSlot1 +=('<option selected="selected" value ="none">???</option>');
 		}
 		else{
 			oSlot1 +=('<option value ="'+i+'">'+pokes[i].slice(0,1).toUpperCase()+pokes[i].slice(1)+'</option>');
@@ -179,9 +184,9 @@ function set_pokes(){
 
 	oSlot2  = '<select size="1" id="poke2">';
 	pokes = pokecheck[type][1].split(" ");
-	for (i = 0; i < pokes.length-1; i++){
-		if (i==0){
-			oSlot2 +=('<option selected="selected" value ="'+i+'">'+pokes[i].slice(0,1).toUpperCase()+pokes[i].slice(1)+'</option>');
+	for (i = -1; i < pokes.length-1; i++){
+		if (i==-1){
+			oSlot2 +=('<option selected="selected" value ="none">???</option>');
 		}
 		else{
 			oSlot2 +=('<option value ="'+i+'">'+pokes[i].slice(0,1).toUpperCase()+pokes[i].slice(1)+'</option>');
@@ -216,8 +221,8 @@ set_pokes();
                             
                                 <div>Instructions</div>
                             
-                            <p>Please enter your Mii name, friend code, and safari Pok&eacute;mon (if you know them) in the boxes above. Then click on Send and a message to send to FriendSafariBot will be automatically be generated. Do not alter this message in any way! If something looks wrong, hit the back button, fix it here, and then try again. <strong>Once submitted, flair will usually be set within 15 minutes. You&rsquo;ll receive a message from the bot and your flair will be displayed on the right sidebar of /r/friendsafari when it&rsquo;s done.</strong></p>
-<p><strong>Important information for newcomers:</strong> If you do not know your safari Pok&eacute;mon, leave the last field on the default &ldquo;I don&rsquo;t know what my Friend Safari type is!&rdquo; option. In such a case, you will need to include the phrase <strong>[Safari Unknown]</strong> (exactly as written, complete with brackets) in your post title if you wish to make your own topic on /r/friendsafari. Once you know what your Friend Safari Pok&eacute;mon are, come back to this page and make another flair request with the Pok&eacute;mon section filled out.</p>
+                            <p>Please enter your Mii name, friend code, and safari Pok&eacute;mon (if you know them) in the boxes above. Then click on "Generate Flair Request" and a message to send to FriendSafariBot will be automatically be generated. Do not alter this message in any way! If something looks wrong, hit the back button, fix it here, and then try again. <strong>Once submitted, flair will usually be set within 15 minutes. You&rsquo;ll receive a message from the bot and your flair will be displayed on the right sidebar of /r/friendsafari when it&rsquo;s done.</strong></p>
+<p><strong>Important information for newcomers:</strong> If you do not know your safari Pok&eacute;mon, leave the last field on the default &ldquo;I don&rsquo;t know what&rsquo;s in my safari.&rdquo; option. In such a case, you will need to include the phrase <strong>[Safari Unknown]</strong> (exactly as written, complete with brackets) in your post title if you wish to make your own topic on /r/friendsafari. Once you know what your Friend Safari Pok&eacute;mon are, come back to this page and make another flair request with the Pok&eacute;mon section filled out.</p>
 <p><strong>WARNING: Providing false information will lead to a ban from /r/friendsafari!<br></strong></p>
                         </div>
                     

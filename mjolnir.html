@@ -1,0 +1,103 @@
+
+<html>
+<head>
+
+<style type="text/css">
+body{
+	text-align: center;
+	background: #f8f8f8;
+	color: #2c3e50;
+}
+form{
+	width:458px;
+	display: inline-block;
+	margin-top: 100px;
+}
+
+label{
+	text-align: left;
+	width: 100%;
+	display: block;
+	margin-top: 15px;
+	font-size: 12px;
+}
+
+input, select{
+	width: 100%;
+	margin-left: 0px;
+}
+
+#button{
+	background: #3498db;
+	color: white;
+	padding: 3px 0;
+	text-align: center;
+	width: 100%px;
+	cursor: pointer;
+	border: 1px solid #2980b9;
+	text-shadow: 1px 1px #2980b9;
+	font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+
+<form>
+<input type="text" id="ban_fc" value="0000-0000-0000">
+<label>Ban Reason</label><select size="1" id="reason" label="Ban Reason">
+<option selected="selected">Safari Scamming</option>
+<option>Shiny Offering</option>
+<option>Pokemon Offering</option>
+<option>Pokerus Offering</option>
+<option>Items Offering</option>
+<option>Money Offering</option>
+<option>Spamming/Harassing</option>
+<option>Subreddit Misuse</option>
+<option>Asking for Upvotes</option>
+<option>Ban Evading</option>
+<option>Other</option>
+</select>
+<label>Thread</label><input type="text" id="thread" value="">
+<label>Friend Card <small>* if applicable - imgur preferably - ex: <a href="http://imgur.com/F61GFt7">Friend Card</a></small></label><input type="text" id="f_card" value="">
+<label>Safari Card <small>* if applicable - imgur preferably - ex: <a href="http://imgur.com/n9IYg7M">Safari Card</a></small></label><input type="text" id="s_card" value="">
+<p>
+<div id="button" onclick="mjolnir_send()">BAN!</div>
+<p>It's strongly suggested to always include the offending thread and visual proof, whenever available, for archiving.
+</form>
+
+<script>
+function mjolnir_send(){
+	ban_fc = document.getElementById("ban_fc").value;
+	reason = document.getElementById("reason").value;
+	thread = document.getElementById("thread").value;
+	f_card = document.getElementById("f_card").value;
+	s_card = document.getElementById("s_card").value;
+	
+	if ((ban_fc.length == 14) && (ban_fc.charAt(4) == "-") && (ban_fc.charAt(9) == "-")){
+		msg = "[FC]" + ban_fc + "[/FC]  \n[Reason]" + reason +"[/Reason]"
+		proof = ""
+		if (thread){
+			proof += "[Thread](" + thread + ")"
+		}
+		if (f_card && s_card){
+			proof += " - [Friend Card]("+f_card+") - [Safari Card]("+s_card+")"
+		}
+		if((f_card||s_card) && !(f_card&&s_card)){
+			window.alert("Friend Card and Safari Card can only be submitted when BOTH PROOFS are present.")
+		}
+
+		if (proof != ""){
+			msg += "[Proof]" + proof + "[/Proof]"
+		}
+		window.open("http://www.reddit.com/message/compose/?to=FriendSafariBot&subject=Mjolnir&message="+msg)
+	}
+	else{
+		window.alert("The Friend Code you submitted for banning is not in a valid format. It should be in the form of ????-????-????");
+	}
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+<head>
+
+<style type="text/css">
+body{
+	text-align: center;
+	background: #f8f8f8;
+	color: #2c3e50;
+}
+form{
+	width:458px;
+	display: inline-block;
+	margin-top: 100px;
+}
+
+label{
+	text-align: left;
+	width: 100%;
+	display: block;
+	margin-top: 15px;
+	font-size: 12px;
+}
+
+input, select{
+	width: 100%;
+	margin-left: 0px;
+}
+
+#button{
+	background: #3498db;
+	color: white;
+	padding: 3px 0;
+	text-align: center;
+	width: 100%px;
+	cursor: pointer;
+	border: 1px solid #2980b9;
+	text-shadow: 1px 1px #2980b9;
+	font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<form>
+<input type="text" id="fc" value="0000-0000-0000">
+<label>User</label><input type="text" id="user" value="">
+<label>Reason or Proof<small> - Not Necessairy</small></label><input type="text" id="reason" value="">
+<p>
+<div id="button" onclick="odin_send()">Change Friend Code Ownership</div>
+</form>
+
+<script>
+function odin_send(){
+	fc = document.getElementById("fc").value;
+	user = document.getElementById("user").value;
+	reason = document.getElementById("reason").value;
+	
+	if ((fc.length == 14) && (fc.charAt(4) == "-") && (fc.charAt(9) == "-")){
+		msg = fc + "  %0A" + user
+		if (reason){
+			msg += "  %0A"+reason
+		}
+		window.open("http://www.reddit.com/message/compose/?to=FriendSafariBot&subject=Odin&message="+msg)
+	}
+	else{
+		window.alert("The Friend Code you submitted is not in a valid format. It should be in the form of ????-????-????");
+	}
+
+}
+</script>
+
+</body>
+</html>

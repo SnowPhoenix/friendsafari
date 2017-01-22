@@ -42,13 +42,14 @@ select{
 	font-size: 14px;
 }
 
-a {
-    pointer-events: none;
-    text-decoration: none;
+.header {
     font-family: Georgia, serif;
-    font-weight: bold;
     font-size: 18px;
-    color: #000000;
+}
+
+a, .header {
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .post {
@@ -90,10 +91,9 @@ document.write('</select>')
 </form>
 
 <script>
-function check_fc(){
+function check_fc(fc){
 	vnums = "0123456789"
 	valid = [vnums,vnums,vnums,vnums,"-",vnums,vnums,vnums,vnums,"-",vnums,vnums,vnums,vnums]
-	fc 	 = document.getElementById("fc").value;
 	if ((fc).length != 14) return false;
 	for (i=0;i<14;i++) if (valid[i].indexOf(fc[i]) == -1) return false;
 	return true;
@@ -101,9 +101,10 @@ function check_fc(){
 
 function unknown_send(){
 	name = document.getElementById("user").value;
-	fc 	 = document.getElementById("fc").value;
+	fc 	 = document.getElementById("fc").value.replace(/ /g,'');
+	console.log('fc='+fc+'"')
 
-	if(check_fc()) {
+	if(check_fc(fc)) {
 		if(fc == "0000-0000-0000"){
 			alert("You didn't enter your Friend Code, please insert it before submitting your request.");
 		}
@@ -219,10 +220,10 @@ set_pokes();
                     
                         <div class="regular">
                             
-                                <div>Instructions</div>
+                                <div class="header">Instructions</div>
                             
                             <p>Please enter your Mii name, friend code, and safari Pok&eacute;mon (if you know them) in the boxes above. Then click on "Generate Flair Request" and a message to send to FriendSafariBot will be automatically be generated. Do not alter this message in any way! If something looks wrong, hit the back button, fix it here, and then try again. <strong>Once submitted, flair will usually be set within 15 minutes. You&rsquo;ll receive a message from the bot and your flair will be displayed on the right sidebar of /r/friendsafari when it&rsquo;s done.</strong></p>
-<p><strong>Important information for newcomers:</strong> If you do not know your safari Pok&eacute;mon, leave the last field on the default &ldquo;I don&rsquo;t know what&rsquo;s in my safari.&rdquo; option. In such a case, you will need to include the phrase <strong>[Safari Unknown]</strong> (exactly as written, complete with brackets) in your post title if you wish to make your own topic on /r/friendsafari. Once you know what your Friend Safari Pok&eacute;mon are, come back to this page and make another flair request with the Pok&eacute;mon section filled out.</p>
+<p><strong>Important information for newcomers:</strong> Unless someone else had already told you what your safari Pok&eacute;mon are on a different site, leave the last field on the default &ldquo;I don&rsquo;t know what&rsquo;s in my safari.&rdquo; option. Then once someone else has told you what your Friend Safari Pok&eacute;mon are, come back to this page and make another flair request with the Pok&eacute;mon section filled out. Be sure to read the <a href="https://www.reddit.com/r/friendsafari/wiki/gettingstarted">Getting Started</a> guide as well!</p>
 <p><strong>WARNING: Providing false information will lead to a ban from /r/friendsafari!<br></strong></p>
                         </div>
                     

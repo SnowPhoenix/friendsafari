@@ -149,7 +149,7 @@ function safari_send(){
 	if (poke3!="none")
 		msg += "+" + pokecheck[type][2].split(" ")[poke3];
 	
-	if(check_fc()) {
+	if(check_fc(fc)) {
 		if(fc == "0000-0000-0000"){
 			alert("You didn't enter your Friend Code, please insert it before submitting your request.")
 		}
